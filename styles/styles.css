@@ -54,6 +54,10 @@ h1 {
   transform: translateY(3px);
 }
 
+.button:hover {
+  background-color: rgb(180, 180, 180);
+}
+
 .answer {
   background-color: var(--buttonAnswer);
 }
@@ -111,6 +115,14 @@ h1 {
 
 .footer li a:hover {
   background-color: darkgray;
+}
+
+.newQuestion {
+  background-color: rgb(255, 210, 193);
+}
+
+.newQuestion:hover {
+  background-color: rgb(255, 172, 142);
 }
 
 #blank {
