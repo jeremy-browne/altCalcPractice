@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles\styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function newQuestionData() {
+            document.getElementById("elevation").innerHTML = Math.floor(Math.random() * 8000) + " ft";
+            document.getElementById("QNH").innerHTML = (Math.random() < 0.5 ? 1013 - Math.floor(Math.random() * 30) : 1013 + Math.floor(Math.random() * 30)) + " hPa";
+            document.getElementById("answer").innerHTML = "";
+            document.getElementById("actualTemp").innerHTML = (Math.random() < 0.5 ? 15 - Math.floor(Math.random() * 10) : 15 + Math.floor(Math.random() * 10)) + "°c";
+            document.getElementById("ISATemp").innerHTML = "";
+            document.getElementById("ISADev").innerHTML = "";
+            document.getElementById("densityAltitude").innerHTML = "";
+        }
+
+        function getPressureHeight() {
+            let pressureHeight = parseInt(document.getElementById("elevation").innerHTML) + parseInt((1013 - parseInt(document.getElementById("QNH").innerHTML))) * 30;
+            document.getElementById("answer").innerHTML = pressureHeight + " ft";
+            return pressureHeight;
+        }
+
+        function getDensityHeight() {
+            let actualTemp = parseInt(document.getElementById("actualTemp").innerHTML);
+            let ISATemp = 15 - Math.floor((getPressureHeight() / 1000) * 2);
+            let ISADev = actualTemp - ISATemp;
+            let densityAltitude = getPressureHeight() + 120 * ISADev;
+            document.getElementById("ISATemp").innerHTML = ISATemp + "°c";
+            document.getElementById("ISADev").innerHTML = actualTemp - ISATemp + "°c";
+            document.getElementById("densityAltitude").innerHTML = densityAltitude + " ft";
+        }
+
+        function toggleFormulas() {
+            var elem = document.getElementById("formulas");
+            if (elem.style.display === "none") {
+                elem.style.display = "block";
+                document.getElementById("toggleFormulas").innerHTML = "Hide Formulas";
+            } else {
+                elem.style.display = "none";
+                document.getElementById("toggleFormulas").innerHTML = "Show Formulas";
+            }
+        }
+    </script>
+</head>
+
+<body onload="newQuestionData()">
+    <!-- Page content -->
+    <div class="main">
+        <div id="pressure">
+            <h1>Pressure Height</h1>
+                <table style="overflow-x:auto;">
+                    <tr>
+                        <td>Elevation</th>
+                        <td id="elevation">100</td>
+                    </tr>
+                    <tr>
+                        <td>QNH</th>
+                        <td id="QNH">1013</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure Height</th>
+                        <td id="answer"></td>
+                    </tr>
+                </table>
+                <button class="button answer" onclick=getPressureHeight()>Check Answer</button>
+            </div>
+        </div>
+        <div id="density">
+            <h1>Density Height</h1>
+            <table style="overflow-x:auto;">
+                <tr>
+                    <td>Actual Temp</th>
+                    <td id="actualTemp">10</td>
+                </tr>
+                <tr>
+                    <td>ISA Temp</th>
+                    <td id="ISATemp">1013</td>
+                </tr>
+                <tr>
+                    <td>ISA Deviation</th>
+                    <td id="ISADev"></td>
+                </tr>
+                <tr>
+                    <td>Density Altitude</th>
+                    <td id="densityAltitude"></td>
+                </tr>
+            </table>
+            <button class="button answer" onclick=getDensityHeight()>Check Answer</button>
+            <button class="button" onclick=newQuestionData()>New Question</button>
+        </div>
+        <div id="formulaControls">
+            <hr/>
+            <button class="button" onclick=toggleFormulas() id="toggleFormulas">Show Formulas</button>
+        </div>
+        
+        <div id="formulas" style="display: none;">
+            <h2>Formulas</h3>
+            <p><strong>Pressure Height</strong> = elevation + (1013 - QNH) x 30</p>
+            <p><strong>ISA Temp</strong> = 15 - ((Pressure Height / 1000) x 2)</p>
+            <p><strong>ISA Deviation</strong> = Actual Temp - ISA Temp</p>
+            <p><strong>Density Height</strong> = Pressure Height ± 120 x ISA Deviation</p>
+        </div>
+    </div>
+    <div class="footer">
+        <ul>
+            <li>
+                <a href="#" id="blank">Jeremy Browne - 2021</a>
+            </li>
+        </ul>
+      </div>
+</body>
+</html>

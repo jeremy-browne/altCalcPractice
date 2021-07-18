@@ -1,0 +1,108 @@
+:root {
+  --borderColour:black;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+
+table {
+  text-align: left;
+  border-collapse: collapse;
+  border: 1px solid var(--borderColour);
+  margin-top: 20px;
+  table-layout: fixed;
+  width: 300px;
+}
+
+th,
+tr,
+td {
+  border-left: 1px solid var(--borderColour);
+  border-top: 1px solid var(--borderColour);
+  padding:5px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+hr {
+  width: 80%;
+  margin-left: -10%;
+}
+
+.button {
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 15px;
+  min-width: 140px;
+  background-color: rgb(230, 230, 230);
+  border: none;
+  border-radius: 5px;
+}
+
+.button:active {
+  transform: translateY(4px);
+}
+
+.answer {
+
+}
+
+.answer:hover {
+  background-color: var(--buttonAnswerHover);
+}
+
+#formulas {
+  padding: 10px;
+  text-align: left;
+}
+
+#formulaControls {
+  padding-top: 10px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: grey;
+}
+
+.footer li {
+  float: left;
+  margin-left: 10px;
+}
+
+.footer li a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer li a:hover {
+  background-color: darkgray;
+}
+
+#blank {
+  text-decoration: none;
+}
+
+#blank:hover {
+  background-color: grey;
+  cursor: default;
+}
