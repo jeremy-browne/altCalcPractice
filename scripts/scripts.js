@@ -9,16 +9,23 @@ function newQuestionData() {
 }
 
 function getPressureHeight() {
-    let pressureHeight = parseInt(document.getElementById("elevation").innerHTML) + parseInt((1013 - parseInt(document.getElementById("QNH").innerHTML))) * 30;
+    let elevation = parseInt(document.getElementById("elevation").innerHTML)
+    let QNH = parseInt(document.getElementById("QNH").innerHTML)
+    let pressureHeight = elevation + parseInt(1013 - QNH) * 30;
     document.getElementById("answer").innerHTML = pressureHeight + " ft";
+    console.log(elevation + " + ((1013 - " + QNH + ") x 30)");
+    console.log("Elevation: " + elevation + " | QNH: " + QNH + " | Pressure Height: " + pressureHeight);
     return pressureHeight;
 }
 
 function getDensityHeight() {
+    let pressureHeight = getPressureHeight();
     let actualTemp = parseInt(document.getElementById("actualTemp").innerHTML);
-    let ISATemp = Math.round(15 - Math.round(getPressureHeight()) / 1000 * 2);
+    let ISATemp = Math.round(15 - Math.round(pressureHeight) / 1000 * 2);
     let ISADev = actualTemp - ISATemp;
-    let densityAltitude = getPressureHeight() + 120 * ISADev;
+    let densityAltitude = pressureHeight + 120 * ISADev;
+    console.log("Rounded ISA Temp to: " + ISATemp);
+    console.log("Actual Temp: " + actualTemp + " | ISA Temp: " + ISATemp);
     document.getElementById("ISATemp").innerHTML = ISATemp + "°c";
     document.getElementById("ISADev").innerHTML = actualTemp - ISATemp + "°c";
     document.getElementById("densityAltitude").innerHTML = densityAltitude + " ft";
