@@ -121,3 +121,7 @@ h1 {
   background-color: grey;
   cursor: default;
 }
+
+#instructions {
+  font-size: 13px;
+}
