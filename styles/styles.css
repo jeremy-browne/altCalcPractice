@@ -1,5 +1,7 @@
 :root {
   --borderColour:black;
+  --buttonAnswer:rgb(218, 255, 219);
+  --buttonAnswerHover: rgb(128, 211, 131);
 }
 
 html {
@@ -29,8 +31,12 @@ tr:nth-child(even) {
 }
 
 hr {
-  width: 80%;
+  width: 95%;
   margin-left: -10%;
+}
+
+h1 {
+  font-size: 25px;
 }
 
 .button {
@@ -45,24 +51,32 @@ hr {
 }
 
 .button:active {
-  transform: translateY(4px);
+  transform: translateY(3px);
 }
 
 .answer {
+  background-color: var(--buttonAnswer);
+}
 
+.answer:active {
+  background-color: green;
 }
 
 .answer:hover {
   background-color: var(--buttonAnswerHover);
 }
 
+#formulaControls {
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
 #formulas {
   padding: 10px;
   text-align: left;
-}
-
-#formulaControls {
-  padding-top: 10px;
+  margin-bottom: 30px;
+  font-size: 12px;
+  margin-top: -50px;
 }
 
 .footer {
@@ -71,6 +85,7 @@ hr {
   bottom: 0;
   width: 100%;
   text-align: left;
+  margin-top: 20px;
 }
 
 .footer ul {
